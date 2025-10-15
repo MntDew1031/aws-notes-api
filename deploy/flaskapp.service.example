@@ -1,0 +1,15 @@
+[Unit]
+Description=Flask Notes API
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/flask_app
+EnvironmentFile=/home/ubuntu/flask_app/.env
+ExecStart=/home/ubuntu/flask_app/venv/bin/python /home/ubuntu/flask_app/app.py
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
