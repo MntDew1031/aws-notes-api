@@ -28,3 +28,43 @@ A secure Flask REST API deployed on AWS using:
 ---
 
 ## Architecture
+Client → Route53 (A/ALIAS) → ALB (443) → EC2 (Flask:5000) → RDS (5432)
+
+---
+
+## Local Development
+```bash
+pip install -r requirements.txt
+export DB_HOST=db-endpoint-placeholder.rds.amazonaws.com
+export DB_USER=postgres
+export DB_PASS=fakepassword
+export API_KEY=fakeapikey
+python app.py
+```
+---
+
+## AWS Deployment Summary
+
+Create RDS PostgreSQL and table (see sql/init.sql).
+
+Launch EC2 (Ubuntu), install Python, copy app.
+
+ALB → Target Group (port 5000, health /).
+
+ACM → Issue SSL cert for subdomain.
+
+Route 53 → A record (Alias) → ALB.
+
+EC2 → Flask systemd service (deploy/flaskapp.service.example).
+
+---
+
+## Security
+
+.env excluded from version control
+
+API key required for write methods
+
+HTTPS enforced through ALB
+
+Port 5000 accessible only from ALB security group
