@@ -12,7 +12,7 @@ A secure Flask REST API deployed on AWS using:
 
 ---
 
-## Live Demo
+## Live Demo (no longer live)
 🔗 **https://notes.shadow1231.com**  
 (API write operations are protected by an API key.)
 
